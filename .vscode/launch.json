@@ -1,0 +1,40 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug Live Data",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/cli.py",
+      "args": [
+        "--license=mit,apache-2.0",
+        "--lang=typescript",
+        "--begin-page=0",
+        "--end-page=1"
+      ]
+    },
+    {
+      "name": "Debug Archive Data",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/cli.py",
+      "args": [
+        "--license=mit,apache-2.0",
+        "--lang=typescript",
+        "--begin-page=2015-01-01",
+        "--end-page=2015-02-01"
+      ]
+    },
+    {
+      "name": "Debug Download",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/cli.py",
+      "args": [
+        "download",
+        "--begin-date=2015-01-01",
+        "--end-date=2015-02-01"
+      ]
+    }
+  ]
+}

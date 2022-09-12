@@ -1,0 +1,6 @@
+{
+  "python.defaultInterpreterPath": ".venv/bin/python",
+  "terminal.integrated.env.linux": {
+    "PYTHONPATH": "${workspaceFolder}/src"
+  }
+}
