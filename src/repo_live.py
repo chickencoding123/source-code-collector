@@ -16,7 +16,7 @@ _graphql_client = Client(
         use_json=True,
         headers={
             "Content-Type": "application/graphql",
-            "Authorization": f"Bearer {dotenv_values().get('API_KEY')}",
+            "Authorization": f"Bearer {dotenv_values('.secrets').get('API_KEY')}",
         },
         retries=3,
     ),
@@ -75,7 +75,7 @@ def _api_find_repos(scrapeOptions: LiveScrapeOptions) -> None:
   totalPages = scrapeOptions.end - scrapeOptions.begin
   pageNumber = scrapeOptions.begin
 
-  while rateLimited > 0 and pageNumber < totalPages:
+  while rateLimited > 0 and pageNumber <= totalPages:
     result = _api_graphql_results(LiveScrapeOptions(scrapeOptions.license, scrapeOptions.lang, scrapeOptions.begin, scrapeOptions.end))
     has_next_page = bool(result["search"]["pageInfo"]["hasNextPage"])
     end_cursor = result["search"]["pageInfo"]["endCursor"]

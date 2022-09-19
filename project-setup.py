@@ -1,15 +1,13 @@
 from os import path, system
 
 """
-  Setup this project by creating a venv module and installing dependencies
+  Setup this project by installing dependencies and setting up files/directories.
 """
 
-if (not path.exists('.env')):
-  envFile = open('.env', 'w')
+if (not path.exists('.secrets')):
+  envFile = open('.secrets', 'w')
   envFile.write('API_KEY=')
   envFile.close()
 
-if (not path.exists('.venv/bin/activate')):
-  system('python3 -m venv .venv')
-
-system('. .venv/bin/activate && pip install -r requirements.txt')
+system('pip install pipenv')
+system('pipenv update')

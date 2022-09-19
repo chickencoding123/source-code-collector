@@ -9,11 +9,11 @@ Training a machine learning model requires a massive amount of training data. Th
 - license: only download repositories with this license. E.g. ['mit', 'apache-2.0']
 
 ## Setup
-You will need **python3**, **sqlite3**, and **python venv module** to run this project. You can install them using a package manager or by following various guides online. After installing them:
+You will need **python3**, **sqlite3** to run this project. You can install them using a package manager or by following various guides online. After installing them:
 1. Clone this repository to your local computer
 2. Open a terminal and navigate to that directory on your local computer
 3. Execute `python3 project-setup.py` inside the terminal which will create an isolated env and install dependencies. 
-4. Add `API_KEY=your github token` inside of a new file named `.env`. At runtime the program will use this token to interact with github API automatically.
+4. Add `API_KEY=your github token` inside of a new file named `.secrets`. At runtime the program will use this token to interact with github API automatically.
    >This project use the github graphql which requires an API key. You can create one by following [Creating a Person Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token#creating-a-token). Only read-only scopes are required for crawling purposes, `read:packages` and `read:org`. For more information see [Authenticating with GraphQL](https://docs.github.com/en/graphql/guides/forming-calls-with-graphql#authenticating-with-graphql).
 
 ## Usage

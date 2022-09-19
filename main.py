@@ -12,6 +12,9 @@ from src.db import Db
 def find_repos(licenseList: list[str], langList: list[str], beginPage: int | date, endPage: int | date):
   """Find matching repositories and save their information locally. Does not download source code."""
 
+  if licenseList is None or langList is None or beginPage is None or endPage is None or len(licenseList) == 0 or len(langList) == 0:
+    raise Exception('Missing one or more required parameters.')
+
   for license in licenseList:
     for lang in langList:
       if (type(beginPage).__name__ == 'date'):
@@ -22,6 +25,9 @@ def find_repos(licenseList: list[str], langList: list[str], beginPage: int | dat
 
 def download_repos(beginDate: date, endDate: date):
   """Download source code for the given timeframe by using previously saved information"""
+
+  if beginDate is None or endDate is None:
+    raise Exception('Missing one or more required parameters.')
 
   db = Db()
   repos = db.select_by_date(beginDate, endDate)

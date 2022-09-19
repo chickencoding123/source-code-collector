@@ -7,7 +7,8 @@ from main import find_repos, download_repos
 
 
 class Union(click.ParamType):
-  def __init__(self, types):
+  def __init__(self, types, name):
+    self.name = name
     self.types = types
 
   def convert(self, value, param, ctx):
@@ -22,13 +23,13 @@ class Union(click.ParamType):
 
 @click.group()
 def cli():
-    pass
+  pass
 
 @cli.command()
 @click.option("--license", type=str, help="Comma separated list of acceptable licenses.")
 @click.option("--lang", type=str, help="Comma separated list of language tags.")
-@click.option("--begin-page", type=Union([click.INT, click.STRING]), help="For pagination purposes, determines the page start.")
-@click.option("--end-page", type=Union([click.INT, click.STRING]), help="For pagination purposes, determines the page end.")
+@click.option("--begin-page", type=Union([click.INT, click.STRING], 'INT | STRING'), help="For pagination purposes, determines the page start.")
+@click.option("--end-page", type=Union([click.INT, click.STRING], 'INT | STRING'), help="For pagination purposes, determines the page end.")
 def crawl(license: str, lang: str, begin_page: int | str, end_page: int | str):
   """Downloads repository information and save them locally."""
 
@@ -41,6 +42,7 @@ def crawl(license: str, lang: str, begin_page: int | str, end_page: int | str):
     end_page = datetime.strptime(end_page, '%Y-%m-%d').date()
 
   find_repos(licenseList, langList, begin_page, end_page)
+  
   click.echo("Finished finding repos!")
 
 @cli.command()
@@ -53,8 +55,9 @@ def download(begin_date: str, end_date: str):
   end_date = datetime.strptime(end_date, '%Y-%m-%d').date()
 
   download_repos(begin_date, end_date)
+
   click.echo("Finished downloading repos!")
 
 
 if __name__ == '__main__':
-    cli()
+  cli()
